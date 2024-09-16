@@ -12,6 +12,9 @@ I created this simple yet fun Rock-Paper-Scissors game using React. It features 
 - **Score Tracking:** Keep track of your wins, draws, and losses. Your scores are saved in `localStorage`, so they persist even if you refresh the page.
 - **User Interface:** The game uses responsive design to ensure it looks great on both desktop and mobile devices.
 
+## Demo
+![Screenshot 2024-09-16 at 8 41 54 PM](https://github.com/user-attachments/assets/5be673b1-ed39-49cf-8a82-227bffa5f4cd) <br/>
+[Live Demo](https://rps-lemix.netlify.app/)
 
 
 ## How to Play
