@@ -59,39 +59,44 @@ const Game = () => {
         setPlayerChoice(m)
         setTrigger(!trigger)
         randomChoice()
-        console.log(aiChoice);
-        console.log(playerChoice);
     }
     
-
-    const checkWinner = () => {
-        if(playerChoice === aiChoice){
-            setPlayerWins('draw');
-            setDraw(Draw + 1)
-        }else if(playerChoice === 'Rock' && aiChoice === 'Scissors'){
-            setPlayerWins('You Won');
-            setWins(Wins + 1)
-        }else if(playerChoice === 'Paper' && aiChoice === 'Rock'){
-            setPlayerWins('You Won');
-            setWins(Wins + 1)
-        }else if(playerChoice === 'Scissors' && aiChoice === 'Paper'){
-            setPlayerWins('You Won');
-            setWins(Wins + 1)
-        }else{
-            setPlayerWins('You Lost');
-            setLoss(Loss + 1)
+    const playGame = () => {
+        const outcomes = {
+          Rock: { Scissors: 'You Won', Paper: 'You Lost' },
+          Paper: { Rock: 'You Won', Scissors: 'You Lost' },
+          Scissors: { Paper: 'You Won', Rock: 'You Lost' }
         }
-
       
-    }
+        if (playerChoice === aiChoice) {
+          setPlayerWins('Draw')
+          setDraw(Draw + 1)
+        } else {
+          const result = outcomes[playerChoice][aiChoice]
+          if (result === 'You Won') {
+            setPlayerWins(result)
+            setWins(Wins + 1)
+          } else {
+            setPlayerWins(result)
+            setLoss(Loss + 1)
+          }
+        }
+      }
+      
+      
 
     useEffect(() => {
         if (playerChoice && aiChoice) {
-            checkWinner();
+            playGame()
         }
-    }, [aiChoice, playerChoice]);
+    }, [aiChoice, playerChoice])
     
-    
+    const reset = () => {
+        setWins(0)
+        setDraw(0)
+        setLoss(0)
+        setPlayerWins('')
+    }
 
     
     
@@ -105,7 +110,7 @@ const Game = () => {
 
             <Buttons icon={Paper} key={2} clickF={() => {handleClick('Paper')}}/>
 
-            <Buttons icon={Scissors} key={3} clickF={() => {handleClick('Scissor')}}/>
+            <Buttons icon={Scissors} key={3} clickF={() => {handleClick('Scissors')}}/>
 
         </div>
         <div className='flex gap-5 mt-10 text-2xl font-bold'>
@@ -113,6 +118,8 @@ const Game = () => {
             <p>Draws:{Draw}</p>
             <p>Loss:{Loss}</p>
         </div>
+
+        <button className='text-xl font-bold text-blue-400 bg-blue-950 py-2 px-4 rounded-full  transition-all ease-in hover:text-white mt-5'onClick={() =>{reset()}}>Reset</button>
     </div>
   )
 }
