@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .reset-btn {
+    @apply lg:text-2xl font-bold text-blue-400 bg-blue-950 lg:py-2 lg:px-4 rounded-full text-xl py-2  px-3 transition-all ease-in hover:text-white mt-5 
+  }
+  .score{
+    @apply flex gap-5 mt-10 text-2xl font-bold
+  }
+  .player-score{
+    @apply lg:text-2xl text-white md:my-4 uppercase font-bold text-xl my-3
+  }
+  .rps{
+    @apply text-3xl font-bold lg:text-5xl md:text-4xl
+  }
+  .btns{
+    @apply flex gap-5
+  }
+  .box{
+    @apply  flex items-center flex-col justify-center gap-4 text-blue-950
+  }
+}

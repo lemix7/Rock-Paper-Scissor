@@ -101,10 +101,12 @@ const Game = () => {
     
     
   return (
-    <div className="game flex items-center flex-col justify-center gap-4 text-blue-950">
-        <h1 className='text-3xl font-bold lg:text-5xl md:text-4xl'>Rocks , Paper , Scissors</h1>
-        <h3 className='text-2xl text-white md:my-4 uppercase font-bold'>{playerWins}</h3>
-        <div className="btns flex gap-8">
+    <div className="box">
+
+        <h1 className='rps'>Rocks , Paper , Scissors</h1>
+        <h3 className='player-score'>{playerWins}</h3>
+
+        <div className="btns ">
 
             <Buttons icon={Rock} key={1} clickF={() => {handleClick('Rock')}} />
 
@@ -113,13 +115,15 @@ const Game = () => {
             <Buttons icon={Scissors} key={3} clickF={() => {handleClick('Scissors')}}/>
 
         </div>
-        <div className='flex gap-5 mt-10 text-2xl font-bold'>
+
+        <div className='score'>
             <p>Wins:{Wins}</p>
             <p>Draws:{Draw}</p>
             <p>Loss:{Loss}</p>
         </div>
 
-        <button className='text-xl font-bold text-blue-400 bg-blue-950 py-2 px-4 rounded-full  transition-all ease-in hover:text-white mt-5'onClick={() =>{reset()}}>Reset</button>
+        <button className='reset-btn'onClick={() =>{reset()}}>Reset</button>
+
     </div>
   )
 }
