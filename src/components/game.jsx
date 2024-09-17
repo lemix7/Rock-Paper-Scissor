@@ -1,11 +1,36 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Buttons from './buttons'
 import Rock from '../Assets/Rock icon.png'
 import Paper from '../Assets/Paper icon.png'
 import Scissors from '../Assets/Scissor icon.png'
 import { useState } from 'react'
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const Game = () => {
+
+    const containerRef = useRef(null)
+    
+    // Start Animation
+    useGSAP(() => {
+
+        const boxes = gsap.utils.toArray(containerRef.current.children);
+    
+        boxes.forEach((box) => {
+            gsap.fromTo(box ,{
+                opacity: 0,
+                y: -100,
+           },{
+                opacity: 1,
+                y: 0,
+                ease: 'power1.inOut' 
+         }) 
+        })
+    
+    },[])
+
+    // Game Logic
+
     const [aiChoice, setAiChoice] = useState(null)
     const [playerChoice, setPlayerChoice] = useState(null)
     const [playerWins, setPlayerWins] = useState('')
@@ -99,9 +124,9 @@ const Game = () => {
     }
 
     
-    
+
   return (
-    <div className="box">
+    <div className="box" ref={containerRef}>
 
         <h1 className='rps'>Rocks , Paper , Scissors</h1>
         <h3 className='player-score'>{playerWins}</h3>
